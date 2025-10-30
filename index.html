@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>شمس الأندلس | المنيو</title>
+  <style>
+    :root{
+      --bg:#f8f4ec;
+      --ink:#3b2f2f;
+      --gold:#b58b2e;
+      --gold-soft:#d4b483;
+      --brown:#7b5e3b;
+      --card:#fff8dc;
+      --line:#c7a96b;
+      --muted:#6d5a4a;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:'Segoe UI',Tahoma,Arial}
+    header{
+      position:relative;
+      padding:22px 16px 28px;
+      background:linear-gradient(180deg, #1c1a19 0%, #1f1c1a 100%);
+      color:#fff8dc;
+      text-align:center;
+    }
+    header h1{margin:0;font-size:26px}
+    nav{background:var(--gold-soft);text-align:center;padding:10px}
+    nav a{color:#2e241c;text-decoration:none;font-weight:700;margin:0 6px}
+    .menu-wrap{max-width:1100px;margin:28px auto;padding:0 14px}
+    .cat{background:#111;border:1px solid #b58b2e;border-radius:16px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+    .cat + .cat{margin-top:14px}
+    .cat-head{
+      background:linear-gradient(180deg,#1a1a1a,#171515);
+      color:#f5e8c8;
+      border:1px solid rgba(181,139,46,.35);
+      display:flex;
+      flex-direction:row-reverse;  /* ← العنوان يمين والسهم يسار */
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 18px;
+      cursor:pointer;
+    }
+    .chev{width:20px;height:20px;color:#d9c28e;transition:.25s}
+    .cat.open .chev{transform:rotate(180deg)}
+    .cat-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+    .cat.open .cat-body{max-height:2000px}
+    .grid{
+      display:grid;gap:14px;padding:14px;background:linear-gradient(180deg,#141313,#0f0e0d);
+      border-top:1px solid rgba(181,139,46,.25);
+    }
+    @media(min-width:640px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+    @media(min-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
+    .card{
+      background:#1b1a18;border:1px solid rgba(181,139,46,.3);border-radius:14px;overflow:hidden;
+      display:grid;grid-template-columns:1fr auto;column-gap:10px;
+    }
+    .card .title{padding:10px 12px;color:#f2e4bf;font-weight:700}
+    .card .price{padding:10px 12px;color:#ffd88a;font-weight:900;text-align:end}
+    footer{text-align:center;padding:18px;color:var(--muted);margin:34px 0 16px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>مقهى ومطعم شمس الأندلس</h1>
+  </header>
+  <nav>
+    <a href="#menu">المنيو</a>
+  </nav>
+
+  <main>
+    <section id="menu" class="menu-wrap">
+      <div id="menuAccordion"></div>
+    </section>
+  </main>
+
+  <footer>© شمس الأندلس</footer>
+
+  <script>
+    const MENU = [
+      {
+        cat: "مشروبات ساخنه", items: [
+          { name: "قهوة عربية", price: "5 د.ل", img: "" },
+          { name: "قهوة عربية بالحليب", price: "6 د.ل", img: "" },
+          { name: "قهوة عربية دبل", price: "7 د.ل", img: "" },
+          { name: "قهوة أمريكانا", price: "5 د.ل", img: "" },
+          { name: "إسبريسو", price: "5 د.ل", img: "" },
+          { name: "إسبريسو دبل", price: "5 د.ل", img: "" },
+          { name: "كابتشينو", price: "5 د.ل", img: "" },
+          { name: "كابتشينو عصرة", price: "5 د.ل", img: "" },
+          { name: "كابتشينو إيطالي", price: "6 د.ل", img: "" },
+          { name: "نسكافيه بلاك", price: "4 د.ل", img: "" },
+          { name: "نسكافيه حليب عادي", price: "5 د.ل", img: "" },
+          { name: "نسكافيه حليب حكة", price: "5 د.ل", img: "" },
+          { name: "حليب", price: "5 د.ل", img: "" },
+          { name: "حليب مكسرات", price: "10 د.ل", img: "" },
+          { name: "هوت شوكليت", price: "10 د.ل", img: "" },
+          { name: "آيس كوفي", price: "5 د.ل", img: "" },
+          { name: "خلطة عادية", price: "5 د.ل", img: "" },
+          { name: "خلطة كاملة", price: "8 د.ل", img: "" }
+        ]
+      },
+      {
+        cat: "مشروبات باردة وسموذي", items: [
+          { name: "فروبي موز", price: "12 د.ل", img: "" },
+          { name: "فروبي موز باللوز", price: "13 د.ل", img: "" },
+          { name: "فروبي فراولة وموز", price: "13 د.ل", img: "" },
+          { name: "فروبي فراولة", price: "12 د.ل", img: "" },
+          { name: "فروبي مانجا", price: "12 د.ل", img: "" },
+          { name: "فروبي مانجا وموز", price: "13 د.ل", img: "" },
+          { name: "فروبي موز وتمر ولوز", price: "17 د.ل", img: "" },
+          { name: "موهيتو سفن", price: "12 د.ل", img: "" },
+          { name: "موهيتو ريدبول", price: "18 د.ل", img: "" }
+        ]
+      },
+      {
+        cat: "كيكات", items: [
+          { name: "تشيز كيك نوتيلا", price: "12 د.ل", img: "" },
+          { name: "تشيز كيك فستق", price: "14 د.ل", img: "" },
+          { name: "تشيز كيك لوتس", price: "14 د.ل", img: "" },
+          { name: "بسبوسة نوتيلا", price: "10 د.ل", img: "" },
+          { name: "بسبوسة فستق", price: "10 د.ل", img: "" },
+          { name: "بسبوسة شمس الأندلس", price: "15 د.ل", img: "" },
+          { name: "رد فيلفت", price: "15 د.ل", img: "" },
+          { name: "سان سباستيان", price: "18 د.ل", img: "" }
+        ]
+      },
+      {
+        cat: "بريوش", items: [
+          { name: "بريوش نوتيلا", price: "7 د.ل", img: "" },
+          { name: "بريوش نوتيلا ومكسرات", price: "9 د.ل", img: "" },
+          { name: "بريوش فستق", price: "9 د.ل", img: "" },
+          { name: "بريوش لوتس", price: "8 د.ل", img: "" },
+          { name: "بريوش شمس الأندلس", price: "15 د.ل", img: "" }
+        ]
+      },
+      {
+        cat: "سنترا", items: [
+          { name: "سنترا عادية", price: "8 د.ل", img: "" },
+          { name: "سنترا شمس الأندلس", price: "13 د.ل", img: "" }
+        ]
+      }
+    ];
+
+    function makeCat({ cat, items }) {
+      const catEl = document.createElement('div');
+      catEl.className = 'cat';
+
+      const head = document.createElement('div');
+      head.className = 'cat-head';
+      head.innerHTML = `
+        <div style="font-weight:800;">${cat}</div>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-width="2" d="M6 9l6 6 6-6"/>
+        </svg>
+      `;
+      catEl.appendChild(head);
+
+      const body = document.createElement('div');
+      body.className = 'cat-body';
+      const grid = document.createElement('div');
+      grid.className = 'grid';
+
+      items.forEach(it => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const title = document.createElement('div');
+        title.className = 'title';
+        title.textContent = it.name;
+
+        const price = document.createElement('div');
+        price.className = 'price';
+        price.textContent = it.price;
+
+        card.appendChild(title);
+        card.appendChild(price);
+        grid.appendChild(card);
+      });
+
+      body.appendChild(grid);
+      catEl.appendChild(body);
+
+      head.addEventListener('click', () => {
+        const open = catEl.classList.contains('open');
+        document.querySelectorAll('.cat.open').forEach(c => c.classList.remove('open'));
+        if (!open) catEl.classList.add('open');
+      });
+
+      return catEl;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const root = document.getElementById('menuAccordion');
+      MENU.forEach(c => root.appendChild(makeCat(c)));
+      const first = document.querySelector('.cat'); if (first) first.classList.add('open');
+    });
+  </script>
+</body>
+</html>
