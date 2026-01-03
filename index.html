@@ -1,16 +1,14 @@
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ar" dir="rtl">
 <head runat="server">
     <meta charset="utf-8" />
-    <title>شركة رياض المدينة | للاستيراد</title>
+    <title>شركة دالين | للاستيراد</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- الخط -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
     <style>
-
         /* إزالة أي مساحة سببت إزاحة */
         * {
             margin: 0;
@@ -24,10 +22,12 @@
             overflow-x: hidden !important;
         }
 
+        /* ألوان دالين (ذهبي + أبيض) */
         :root {
-            --blue: #1F3765;
             --gold: #C7A557;
+            --dark: #1b1b1b;
             --light: #f5f7fa;
+            --softGold: #f3ead7;
         }
 
         /* ================= HEADER ================= */
@@ -42,6 +42,7 @@
             position: sticky;
             top: 0;
             z-index: 99999;
+            border-bottom: 3px solid var(--gold);
         }
 
         .logo img {
@@ -52,15 +53,20 @@
             margin-left: 25px;
             text-decoration: none;
             font-size: 18px;
-            color: var(--blue);
+            color: var(--dark);
             font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .nav a:hover {
+            color: var(--gold);
         }
 
         .menu-btn {
             display: none;
             font-size: 32px;
             cursor: pointer;
-            color: var(--blue);
+            color: var(--dark);
         }
 
         /* ========== SIDE MENU FIXED ========== */
@@ -74,8 +80,9 @@
             padding: 30px 20px;
             transition: transform 0.35s ease;
             transform: translateX(100%);
-            z-index: 999999 !important; /* تظهر دائما فوق */
+            z-index: 999999 !important;
             box-shadow: -3px 0 10px rgba(0,0,0,0.15);
+            border-left: 4px solid var(--gold);
         }
 
         .side-menu.open {
@@ -87,15 +94,19 @@
             padding: 15px 0;
             font-size: 18px;
             text-decoration: none;
-            color: var(--blue);
+            color: var(--dark);
             border-bottom: 1px solid #eee;
             font-weight: 600;
+        }
+
+        .side-menu a:hover {
+            color: var(--gold);
         }
 
         .close-btn {
             font-size: 28px;
             cursor: pointer;
-            color: var(--blue);
+            color: var(--dark);
             margin-bottom: 20px;
             display: block;
             text-align: left;
@@ -130,7 +141,7 @@
 
         /* ================= TITLES ================= */
         h2 {
-            color: var(--blue);
+            color: var(--dark);
             font-size: 32px;
             font-weight: 700;
             text-align: center;
@@ -168,13 +179,13 @@
         .feature-box:hover {
             transform: scale(1.08);
             box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-            border: 2px solid var(--blue);
+            border: 2px solid var(--gold);
         }
 
         .feature-icon {
             width: 70px;
             height: 70px;
-            background: var(--blue);
+            background: var(--gold);
             color: white;
             border-radius: 50%;
             margin: auto;
@@ -205,12 +216,12 @@
         .product-box:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-            border: 2px solid var(--blue);
+            border: 2px solid var(--gold);
         }
 
         /* ================= STATS ================= */
         .stats-box {
-            background: var(--blue);
+            background: var(--gold);
             color: white;
             width: 260px;
             padding: 25px 10px;
@@ -222,28 +233,30 @@
 
         /* ================= FOOTER ================= */
         footer {
-            background: var(--blue);
+            background: var(--dark);
             color: white;
             padding: 40px 20px;
             text-align: center;
             margin-top: 40px;
+            border-top: 4px solid var(--gold);
         }
 
         footer img {
             height: 80px;
         }
-
-
     </style>
 
 </head>
 <body>
 
+<form id="form1" runat="server">
+
     <!-- ========== HEADER ========== -->
     <div class="header">
         <div class="logo">
-            <img src="logo2-icon.png" />
+           <img src="img/logo.png" alt="Dalin Logo" />
         </div>
+
         <div class="nav">
             <a href="#about">من نحن</a>
             <a href="#features">ما يميزنا</a>
@@ -279,9 +292,9 @@
 
     <!-- ========== SLIDER ========== -->
     <div class="slider">
-        <img src="slide1-1.jpg" class="active" />
-        <img src="slider2-2.jpg" />
-        <img src="slider3-3.jpg" />
+        <img src="img/prod3.jpg" class="active" />
+        <img src="img/slider4.jpg" />
+        <img src="img/slider3.jpg" />
     </div>
 
     <script>
@@ -295,40 +308,40 @@
         }, 4000);
     </script>
 
+
     <!-- ========== ABOUT ========== -->
- <section id="about" class="animate" style="padding:70px 25px;">
-    <h2 style="color:var(--blue); font-size:34px; margin-bottom:25px;">من نحن؟</h2>
+    <section id="about" class="animate" style="padding:70px 25px;">
+        <h2 style="color:var(--dark); font-size:34px; margin-bottom:25px;">من نحن؟</h2>
 
-    <div style="
-        background:#eef3f8;
-        padding:30px 25px;
-        border-radius:12px;
-        width:85%;
-        margin:auto;
-        line-height:2.2;
-        font-size:19px;
-        color:#444;
-        border-right:6px solid var(--gold);
-    ">
+        <div style="
+            background:var(--softGold);
+            padding:30px 25px;
+            border-radius:12px;
+            width:85%;
+            margin:auto;
+            line-height:2.2;
+            font-size:19px;
+            color:#444;
+            border-right:6px solid var(--gold);
+        ">
 
-        <p style="font-weight:700; font-size:24px; color:var(--blue); margin-bottom:15px;">
-            شركة رياض المدينة لاستيراد المواد الغذائية
-        </p>
+            <p style="font-weight:700; font-size:24px; color:var(--dark); margin-bottom:15px;">
+                شركة دالين لاستيراد المواد الغذائية
+            </p>
 
-        <p>
-            تُعد شركة <strong style="color:var(--gold)">رياض المدينة</strong> من الشركات الرائدة في مجال استيراد
-            وتوزيع المواد الغذائية عالية الجودة. نعمل على توفير أفضل المنتجات لتلبية احتياجات السوق
-            المحلي، مع التزام كامل بمعايير السلامة والجودة.
-        </p>
+            <p>
+                تُعد شركة <strong style="color:var(--gold)">دالين</strong> من الشركات الرائدة في مجال استيراد
+                وتوزيع المواد الغذائية عالية الجودة. نعمل على توفير أفضل المنتجات لتلبية احتياجات السوق
+                المحلي، مع التزام كامل بمعايير السلامة والجودة.
+            </p>
 
-        <p>
-            نحرص على التعاون مع نخبة من الموردين لضمان وصول منتجات طازجة ومتنوعة إلى عملائنا،
-            ونسعى دائمًا لبناء الثقة المستمرة من خلال المهنية والتميز في تقديم الخدمة.
-        </p>
+            <p>
+                نحرص على التعاون مع نخبة من الموردين لضمان وصول منتجات طازجة ومتنوعة إلى عملائنا،
+                ونسعى دائمًا لبناء الثقة المستمرة من خلال المهنية والتميز في تقديم الخدمة.
+            </p>
 
-    </div>
-</section>
-
+        </div>
+    </section>
 
     <!-- ========== FEATURES ========== -->
     <section id="features" class="animate">
@@ -363,7 +376,7 @@
     <!-- ========== CATEGORIES ========== -->
     <section id="categories" class="animate">
         <h2>فئات منتجاتنا</h2>
-        <div style="width:80px; height:5px; background:var(--blue); margin:10px auto 25px;"></div>
+        <div style="width:80px; height:5px; background:var(--gold); margin:10px auto 25px;"></div>
         <p style="font-size:18px; color:#555;">
             اكتشف مجموعتنا الواسعة من المنتجات عالية الجودة
         </p>
@@ -374,46 +387,45 @@
         <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
 
             <div class="product-box animate">
-                <img src="prod1.jpg" style="width:100%; height:230px; object-fit:cover;" />
-                <div style="padding:15px;"><h3 style="color:var(--blue);">واحــات </h3></div>
+                <img src="img/prod1.jpg" style="width:100%; height:230px; object-fit:cover;" />
+                <div style="padding:15px;"><h3 style="color:var(--dark);">واحــات</h3></div>
             </div>
 
             <div class="product-box animate">
-                <img src="slide3.jpg" style="width:100%; height:230px; object-fit:cover;" />
-                <div style="padding:15px;"><h3 style="color:var(--blue);"> Cilo</h3></div>
+                <img src="img/prod2.jpg" style="width:100%; height:230px; object-fit:cover;" />
+                <div style="padding:15px;"><h3 style="color:var(--dark);">Cilo</h3></div>
             </div>
 
             <div class="product-box animate">
-                <img src="slide2.jpg" style="width:100%; height:230px; object-fit:cover;" />
-                <div style="padding:15px;"><h3 style="color:var(--blue);">ONO</h3></div>
+                <img src="img/slider2.jpg" style="width:100%; height:230px; object-fit:cover;" />
+                <div style="padding:15px;"><h3 style="color:var(--dark);">ONO</h3></div>
             </div>
 
         </div>
     </section>
 
     <!-- ========== STATS ========== -->
-<div id="stats" style="display:flex; justify-content:center; gap:25px; flex-wrap:wrap;">
+    <div id="stats" style="display:flex; justify-content:center; gap:25px; flex-wrap:wrap;">
 
-    <div class="stats-box animate">
-        <span class="counter" data-target="200">0</span>+
-        <br />
-        <span style="font-size:18px;">منتج</span>
+        <div class="stats-box animate">
+            <span class="counter" data-target="200">0</span>+
+            <br />
+            <span style="font-size:18px;">منتج</span>
+        </div>
+
+        <div class="stats-box animate">
+            <span class="counter" data-target="12">0</span>+
+            <br />
+            <span style="font-size:18px;">سنوات خبرة</span>
+        </div>
+
+        <div class="stats-box animate">
+            <span class="counter" data-target="450">0</span>+
+            <br />
+            <span style="font-size:18px;">عميل راضٍ</span>
+        </div>
+
     </div>
-
-    <div class="stats-box animate">
-        <span class="counter" data-target="12">0</span>+
-        <br />
-        <span style="font-size:18px;">سنوات خبرة</span>
-    </div>
-
-    <div class="stats-box animate">
-        <span class="counter" data-target="450">0</span>+
-        <br />
-        <span style="font-size:18px;">عميل راضٍ</span>
-    </div>
-
-</div>
-
 
     <!-- ========== CONTACT ========== -->
     <section id="contact" class="animate" style="padding:70px 20px; background:#f7f7f7; text-align:center;">
@@ -422,15 +434,15 @@
             📞 الهاتف 1 : 0912345678<br />
             📞 الهاتف 2 : 0922120823<br />
             📍 العنوان: مصراتة – ليبيا, عمارات الجامع العالي عمارة (و) الدور الثالث شقة (13-18)  <br />
-            📧 البريد: info@riyadalmadina.ly
+            📧 البريد: info@dalin.ly
         </p>
     </section>
 
     <!-- ========== FOOTER ========== -->
     <footer>
-        <img src="logo.png" />
-        <h3 style="margin:10px 0 5px;">شركة رياض المدينة</h3>
-        <p style="color:#ddd; margin-top:5px;">جميع الحقوق محفوظة لـشركة رياض المدينة © 2025</p>
+        <img src="img/logo1.png" alt="Dalin Logo" />
+        <h3 style="margin:10px 0 5px;">شركة دالين</h3>
+        <p style="color:#ddd; margin-top:5px;">جميع الحقوق محفوظة لـشركة دالين © 2025</p>
     </footer>
 
     <!-- ========== SCROLL ANIMATION SCRIPT ========== -->
@@ -457,7 +469,7 @@
             counters.forEach(counter => {
                 let target = +counter.getAttribute("data-target");
                 let value = 0;
-                let speed = target / 80;  // سرعة مناسبة وناعمة
+                let speed = target / 80;
 
                 let update = setInterval(() => {
                     value += speed;
@@ -473,7 +485,6 @@
             });
         }
 
-        // يبدأ العد عند المرور على قسم الإحصائيات
         window.addEventListener("scroll", () => {
             let section = document.getElementById("stats");
             let position = section.getBoundingClientRect().top;
@@ -485,5 +496,6 @@
         });
     </script>
 
+</form>
 </body>
 </html>
